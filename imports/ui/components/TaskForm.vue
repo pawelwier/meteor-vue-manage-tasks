@@ -25,10 +25,14 @@ export default {
   },
   methods: {
     onSubmitTask() {
+      if (!this.taskText) return
+      const user = Meteor.user()
+      console.log('user', user)
       TasksCollection.insert({
         text: this.taskText,
         complete: false,
         createdAt: new Date(),
+        userId: user._id,
       })
       this.taskText = ''
     },
