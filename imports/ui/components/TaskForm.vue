@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {TasksCollection} from '../../api/collections/TasksCollection'
+import { Meteor } from 'meteor/meteor';
 import ButtonComponent from './common/ButtonComponent.vue'
 export default {
   components: {
@@ -26,14 +26,7 @@ export default {
   methods: {
     onSubmitTask() {
       if (!this.taskText) return
-      const user = Meteor.user()
-      console.log('user', user)
-      TasksCollection.insert({
-        text: this.taskText,
-        complete: false,
-        createdAt: new Date(),
-        userId: user._id,
-      })
+      Meteor.call('tasks.insert', this.taskText.trim())
       this.taskText = ''
     },
   },

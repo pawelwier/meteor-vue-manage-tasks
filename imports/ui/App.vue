@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {TasksCollection} from '../api/collections/TasksCollection'
+import {TasksCollection} from '../db/collections/TasksCollection'
 import Task from './components/Task.vue'
 import TaskForm from './components/TaskForm.vue'
 import TaskCount from './components/TaskCount.vue'

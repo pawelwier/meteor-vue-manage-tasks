@@ -16,8 +16,8 @@
 </template>
 
 <script>
+import {Meteor} from 'meteor/meteor'
 import RadioComponent from './common/RadioComponent.vue'
-import {TasksCollection} from '../../api/collections/TasksCollection'
 import ButtonComponent from './common/ButtonComponent.vue'
 export default {
   components: {
@@ -32,17 +32,10 @@ export default {
   },
   methods: {
     onCompleteChange(complete) {
-      TasksCollection.update(
-        this.task._id,
-        {
-          $set: {
-            complete,
-          }
-        }
-      )
+      Meteor.call('tasks.setIsChecked', this.task._id, complete)
     },
     onDeleteTask() {
-      TasksCollection.remove(this.task._id)
+      Meteor.call('tasks.remove', this.task._id)
     },
   },
 }

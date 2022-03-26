@@ -1,6 +1,7 @@
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
-import {TasksCollection} from '../imports/api/collections/TasksCollection'
+import {TasksCollection} from '../imports/db/collections/TasksCollection'
+import '../imports/api/methods/tasksMethods'
 
 const insertTask = (text, user) => TasksCollection.insert({
   text,
