@@ -10,6 +10,10 @@
         />
       </div>
       <TaskForm />
+      <div 
+        class="loading"
+        v-if="!$subReady.tasks"  
+      >Loading tasks...</div>
       <Task
         v-for="(task, i) in tasks"
         :key="i"
@@ -61,10 +65,12 @@ export default {
   methods: {
     toggleHideComplete() {
       this.hideComplete = !this.hideComplete
-      console.log(this.currentUser)
     }
   },
   meteor: {
+    $subscribe: {
+      'tasks': [],
+    },
     tasks() {
       if (!this.user) return
       const userIdFilter = {userId: this.user._id}

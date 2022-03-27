@@ -18,8 +18,13 @@ Meteor.methods({
 
   'tasks.remove'(id) {
     check(id, String)
-    if (!this.userId) {
+    const userId = this.userId
+    if (!userId) {
       throw new Meteor.Error('Not authorized')
+    }
+    const task = TasksCollection.findOne({_id: id, userId})
+    if (!task) {
+      throw new Meteor.Error('Access denied')
     }
     TasksCollection.remove(id)
   },
@@ -27,8 +32,13 @@ Meteor.methods({
   'tasks.setIsChecked'(id, complete) {
     check(id, String)
     check(complete, Boolean)
-    if (!this.userId) {
+    const userId = this.userId
+    if (!userId) {
       throw new Meteor.Error('Not authorized')
+    }
+    const task = TasksCollection.findOne({_id: id, userId})
+    if (!task) {
+      throw new Meteor.Error('Access denied')
     }
     TasksCollection.update(id, {
       $set: {

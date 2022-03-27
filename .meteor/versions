@@ -4,7 +4,6 @@ akryum:vue-component@0.15.2
 akryum:vue-component-dev-client@0.4.7
 akryum:vue-component-dev-server@0.1.4
 allow-deny@1.1.1
-autopublish@1.0.7
 autoupdate@1.8.0
 babel-compiler@7.9.0
 babel-runtime@1.5.0
@@ -62,6 +61,7 @@ mongo-id@1.0.8
 npm-mongo@4.3.1
 ordered-dict@1.1.0
 promise@0.12.0
+quave:testing@1.0.1
 random@1.2.0
 rate-limit@1.0.9
 react-fast-refresh@0.2.3

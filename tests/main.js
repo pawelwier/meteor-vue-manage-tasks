@@ -1,9 +1,10 @@
-import assert from "assert";
+import assert from "assert"
+import '../imports/api/methods/tasksMethods.test.js'
 
-describe("skel", function () {
+describe("todos-meteor-vue", function () {
   it("package.json has correct name", async function () {
     const { name } = await import("../package.json");
-    assert.strictEqual(name, "skel");
+    assert.strictEqual(name, "todos-meteor-vue");
   });
 
   if (Meteor.isClient) {
