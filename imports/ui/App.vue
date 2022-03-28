@@ -9,7 +9,9 @@
           :user="user"
         />
       </div>
-      <TaskForm />
+      <TaskForm 
+        :users="userList"
+      />
       <div 
         class="loading"
         v-if="!$subReady.tasks"  
@@ -70,6 +72,7 @@ export default {
   meteor: {
     $subscribe: {
       'tasks': [],
+      'allUsers': [],
     },
     tasks() {
       if (!this.user) return
@@ -86,6 +89,10 @@ export default {
       const userId = Meteor.userId()
       if (!userId) return
       return Meteor.users.findOne({_id: userId})
+    },
+    userList() {
+      if (!this.user) return
+      return Meteor.users.find({_id: {$ne: this.user._id}})
     },
   },
 }

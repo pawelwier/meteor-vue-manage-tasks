@@ -3,16 +3,21 @@ import {check} from 'meteor/check'
 import {TasksCollection} from '../../db/collections/TasksCollection'
 
 Meteor.methods({
-  'tasks.insert'(text) {
+  'tasks.insert'(text, assignedUser) {
     check(text, String)
     if (!this.userId) {
       throw new Meteor.Error('Not authorized')
+    }
+    let author
+    if (assignedUser) {
+      author = Meteor.users.findOne({_id: this.userId})
     }
     TasksCollection.insert({
       text,
       complete: false,
       createdAt: new Date(),
-      userId: this.userId,
+      userId: assignedUser ? assignedUser._id : this.userId,
+      author: assignedUser ? author : null,
     })
   },
 

@@ -6,7 +6,7 @@
       @change="onCompleteChange"
     />
     <label :for="task._id">
-    {{task.text}}
+    {{task.text}} {{task.author ? `(${task.author.username})` : ''}}
     </label>
     <ButtonComponent 
       @click="onDeleteTask"
